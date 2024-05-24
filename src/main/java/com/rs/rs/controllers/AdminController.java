@@ -12,5 +12,11 @@ public class AdminController {
 
         return "admin/pages/dashboard";
     }
+    @GetMapping("/message")
+    public String messanger(){
+
+
+        return "admin/pages/messanger";
+    }
     
 }
