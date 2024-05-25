@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "messages")
@@ -15,21 +13,9 @@ public class Messages {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private int adminid;
     private String msg;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_id") // Changed to match the field name in Admins class
-    private Admins admins;
-
-    // No-argument constructor
-    public Messages() {
-    }
-
-    // Constructor with parameters
-    public Messages(String msg, Admins admins) {
-        this.msg = msg;
-        this.admins = admins;
-    }
 
     public int getId() {
         return id;
@@ -39,6 +25,14 @@ public class Messages {
         this.id = id;
     }
 
+    public int getAdminId() {
+        return adminid;
+    }
+
+    public void setAdminId(int adminId) {
+        this.adminid = adminId;
+    }
+
     public String getMsg() {
         return msg;
     }
@@ -46,15 +40,8 @@ public class Messages {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
-    public Admins getAdmins() {
-        return admins;
-    }
-
-    public void setAdmins(Admins admins) {
-        this.admins = admins;
-    }
-
+}
+   
  
 
-}
+
