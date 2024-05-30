@@ -4,25 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messenger</title>
+    <style>
+        #infield {
+            position: fixed;
+            bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-    <section id="content">
+    <section id="content" class="bg-body-secondary">
         <div class="card">
             <div class="card-body">
-                <form class="row g-3" th:action="@{/message}" method="post" th:object="${abc}">
-              
-                    <input  class="form-control"th:field="*{adminId}">
-                    <div class="col-md-9">
-                        <input class="form-control" th:field="*{msg}">
+
+               
+                <div class="col-md-10">
+                
+                <div th:each="message : ${messages}">
+                    <div class="row">
+                        <div class="col-6" th:if="${message.adminId == 0}">
+                            <p th:text="${message.msg}" class="border border-secondary rounded p-3"></p>
+                        </div>
+                        <div class="col-6 offset-6 text-right" th:if="${message.adminId == 1}">
+                            <p th:text="${message.msg}" class="border border-secondary rounded p-3"></p>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-paper-plane"></i> Send
-                        </button>
-                    </div>
-                </form>
+
+                </div>
+            </div>
+          
             </div>
         </div>
+        <div id="infield">
+            <form class="row g-3" th:action="@{/message}" method="post" th:object="${abc}">
+          
+                <input  class="form-control"th:field="*{adminId}" placeholder="Enter admin id">
+                <div class="col-md-9">
+                    <input class="form-control" th:field="*{msg}" placeholder="Enter your Message">
+                    <p th:if="${#fields.hasErrors('msg')}" class="text-danger" th:errors="*{msg}"></p>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </form>
+            </div>
     </section>
 </body>
 </html>
