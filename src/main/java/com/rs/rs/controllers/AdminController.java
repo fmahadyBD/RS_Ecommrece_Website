@@ -51,7 +51,8 @@ public class AdminController {
         if (result.hasErrors()) {
             List<Messages> messageList = repo.findAll();
             model.addAttribute("messages", messageList);
-            model.addAttribute("abc", messages); // Use the object containing validation errors
+            // Use the object containing validation errors
+            model.addAttribute("abc", messages);
             return "admin/pages/messenger";
         }
         try {

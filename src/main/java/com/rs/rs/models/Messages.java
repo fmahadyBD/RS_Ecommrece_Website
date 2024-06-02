@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+
 @Entity
 @Table(name = "messages")
 public class Messages {
@@ -13,8 +14,6 @@ public class Messages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-
     private int adminid;
     @NotBlank(message="Enter the message")
     private String msg;
